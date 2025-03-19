@@ -53,7 +53,7 @@ struct Currency: Codable, Equatable {
     let symbol: String
 }
 
-struct Location: Hashable {
+struct Location: Hashable, Codable {
     let latitude: Double
     let longitude: Double
 } 

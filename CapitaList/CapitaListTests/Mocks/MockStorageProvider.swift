@@ -8,7 +8,7 @@
 import Foundation
 @testable import CapitaList
 
-class MockStorageProvider: StorageProviderProtocol {
+final class MockStorageProvider: StorageProviderProtocol {
     private var storage: [String: Any] = [:]
     
     func set(_ value: Any?, forKey defaultName: String) {
