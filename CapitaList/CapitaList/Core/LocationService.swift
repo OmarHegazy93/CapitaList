@@ -9,5 +9,5 @@
 protocol LocationServiceProtocol {
     func getCurrentLocation() async -> Result<Location, CountryError>
     func hasLocationPermission() -> Bool
-    func requestLocationPermission() async
+    func requestLocationPermission() async -> Bool
 }

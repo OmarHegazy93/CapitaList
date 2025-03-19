@@ -27,9 +27,7 @@ final class MockLocationService: LocationServiceProtocol {
         return .failure(.locationDenied)
     }
     
-    func hasLocationPermission() -> Bool {
-        hasPermission
-    }
+    func hasLocationPermission() -> Bool { hasPermission }
     
-    func requestLocationPermission() async { }
+    func requestLocationPermission() async -> Bool { hasPermission }
 }
