@@ -11,3 +11,5 @@ protocol StorageProviderProtocol: AnyObject {
     func set(_ value: Any?, forKey defaultName: String)
     func data(forKey defaultName: String) -> Data?
 }
+
+extension UserDefaults: StorageProviderProtocol {}

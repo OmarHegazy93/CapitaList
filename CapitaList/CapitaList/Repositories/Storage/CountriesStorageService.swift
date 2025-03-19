@@ -7,8 +7,6 @@
 
 import Foundation
 
-extension UserDefaults: StorageProviderProtocol {}
-
 actor CountriesStorageService {
     private let allCountriesKey = "allCountries"
     private let savedCountriesKey = "savedCountries"
