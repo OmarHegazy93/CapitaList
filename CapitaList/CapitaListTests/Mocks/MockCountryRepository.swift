@@ -21,7 +21,7 @@ final class MockCountryRepository: CountryRepositoryProtocol {
         defaultCountry = country
     }
     
-    func setCountryForLocation(_ location: Location, country: Country) {
+    func setLocation(for country: Country, as location: Location) {
         locationCountryMap[location] = country
     }
     

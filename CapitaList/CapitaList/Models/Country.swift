@@ -12,6 +12,20 @@ struct Country: Codable, Equatable, Identifiable {
     private let latlngArray: [Double]
     private let currenciesArray: [Currency]
     
+    init(
+        name: String,
+        code: String,
+        capital: String,
+        latlngArray: [Double],
+        currenciesArray: [Currency]
+    ) {
+        self.name = name
+        self.code = code
+        self.capital = capital
+        self.latlngArray = latlngArray
+        self.currenciesArray = currenciesArray
+    }
+    
     enum CodingKeys: String, CodingKey {
         case name
         case code = "alpha3Code"
