@@ -10,6 +10,7 @@ import Foundation
 actor CountriesNetworkService {
     private let baseURL = "https://restcountries.com/v2/all"
     private let networkProvider: NetworkProviderProtocol
+    private let parser = Parser()
     
     init(networkProvider: NetworkProviderProtocol = URLSession.shared) {
         self.networkProvider = networkProvider
@@ -28,19 +29,17 @@ actor CountriesNetworkService {
                 return .failure(.networkError("Invalid response"))
             }
             
-            return parseCountriesResponse(from: data)
+            // Use the parser to decode the API response
+            let result: Result<[Country], ParsingError> = parser.decode(data)
+            
+            switch result {
+            case .success(let countries):
+                return .success(countries)
+            case .failure:
+                return .failure(.invalidData)
+            }
         } catch {
             return .failure(.networkError(error.localizedDescription))
-        }
-    }
-    
-    private func parseCountriesResponse(from data: Data) -> Result<[Country], CountryError> {
-        do {
-            // Parse the API response
-            let countries = try JSONDecoder().decode([Country].self, from: data)
-            return .success(countries)
-        } catch {
-            return .failure(.invalidData)
         }
     }
 }

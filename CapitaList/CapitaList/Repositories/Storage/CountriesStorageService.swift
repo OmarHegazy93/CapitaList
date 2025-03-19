@@ -12,16 +12,19 @@ actor CountriesStorageService {
     private let savedCountriesKey = "savedCountries"
     
     private let storageProvider: StorageProviderProtocol
+    private let parser = Parser()
     
     init(storageProvider: StorageProviderProtocol = UserDefaults.standard) {
         self.storageProvider = storageProvider
     }
         
     func saveAllCountries(_ countries: [Country]) async {
-        do {
-            let data = try JSONEncoder().encode(countries)
+        let result: Result<Data, ParsingError> = parser.encode(countries)
+        
+        switch result {
+        case .success(let data):
             storageProvider.set(data, forKey: allCountriesKey)
-        } catch {
+        case .failure(let error):
             print("Error saving all countries: \(error)")
         }
     }
@@ -31,10 +34,12 @@ actor CountriesStorageService {
             return .failure(.notFound)
         }
         
-        do {
-            let countries = try JSONDecoder().decode([Country].self, from: data)
+        let result: Result<[Country], ParsingError> = parser.decode(data)
+        
+        switch result {
+        case .success(let countries):
             return .success(countries)
-        } catch {
+        case .failure:
             return .failure(.invalidData)
         }
     }
@@ -46,10 +51,12 @@ actor CountriesStorageService {
             return .success([]) // Return empty array if nothing saved yet
         }
         
-        do {
-            let countries = try JSONDecoder().decode([Country].self, from: data)
+        let result: Result<[Country], ParsingError> = parser.decode(data)
+        
+        switch result {
+        case .success(let countries):
             return .success(countries)
-        } catch {
+        case .failure:
             return .failure(.invalidData)
         }
     }
@@ -68,21 +75,25 @@ actor CountriesStorageService {
             
             // Add the country and save
             countries.append(country)
-            do {
-                let data = try JSONEncoder().encode(countries)
+            let encodeResult: Result<Data, ParsingError> = parser.encode(countries)
+            
+            switch encodeResult {
+            case .success(let data):
                 storageProvider.set(data, forKey: savedCountriesKey)
                 return .success(true)
-            } catch {
+            case .failure:
                 return .failure(.invalidData)
             }
             
         case .failure:
             // If there was an error getting saved countries, try to save just this one
-            do {
-                let data = try JSONEncoder().encode([country])
+            let encodeResult: Result<Data, ParsingError> = parser.encode([country])
+            
+            switch encodeResult {
+            case .success(let data):
                 storageProvider.set(data, forKey: savedCountriesKey)
                 return .success(true)
-            } catch {
+            case .failure:
                 return .failure(.invalidData)
             }
         }
@@ -100,11 +111,13 @@ actor CountriesStorageService {
                 return .success(false) // No country was removed
             }
             
-            do {
-                let data = try JSONEncoder().encode(countries)
+            let encodeResult: Result<Data, ParsingError> = parser.encode(countries)
+            
+            switch encodeResult {
+            case .success(let data):
                 storageProvider.set(data, forKey: savedCountriesKey)
                 return .success(true)
-            } catch {
+            case .failure:
                 return .failure(.invalidData)
             }
             
