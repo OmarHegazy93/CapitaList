@@ -110,7 +110,7 @@ final class CountryRepository: CountryRepositoryProtocol {
     }
     
     func getSavedCountries() async -> Result<[Country], CountryError> {
-        return await storageService.getSavedCountries()
+        await storageService.getSavedCountries()
     }
     
     func saveCountry(country: Country) async -> Result<Bool, CountryError> {
@@ -129,7 +129,7 @@ final class CountryRepository: CountryRepositoryProtocol {
     }
     
     func removeCountry(countryCode: String) async -> Result<Bool, CountryError> {
-        return await storageService.removeCountry(countryCode: countryCode)
+        await storageService.removeCountry(countryCode: countryCode)
     }
     
     // MARK: - Private Methods

@@ -9,6 +9,7 @@ import Foundation
 @testable import CapitaList
 
 final class MockNetworkProvider: NetworkProviderProtocol {
+    private let parser = Parser()
     // Configure mock responses
     var mockData: Data?
     var mockResponse: URLResponse?

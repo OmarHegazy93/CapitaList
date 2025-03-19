@@ -8,7 +8,8 @@
 import Testing
 @testable import CapitaList
 
-struct MainViewModelTests {
+// TODO: To discuss the difference between this test suite and MainViewModelTestsWithMockedProviders
+struct MainViewModelTestsWithMockedRepository {
     let viewModel: MainViewModel
     let countryRepository = MockCountryRepository()
     let locationService = MockLocationService()
