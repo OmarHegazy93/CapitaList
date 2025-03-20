@@ -26,7 +26,7 @@ struct MainView: View {
                 .toolbar {
                     ToolbarItem(placement: .topBarTrailing) {
                         Button(action: {
-                            viewModel.coordinator.presentSheet(.countrySearch)
+                            viewModel.showSearchScreen()
                         }) {
                             Image(systemName: "plus")
                                 .fontWeight(.semibold)
@@ -64,7 +64,7 @@ struct MainView: View {
                     List {
                         ForEach(countries) { country in
                             Button {
-                                viewModel.coordinator.navigateTo(.countryDetail(country))
+                                viewModel.showCountryDetails(country: country)
                             } label: {
                                 CountryRowView(country: country)
                             }

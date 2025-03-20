@@ -26,8 +26,21 @@ enum AppDestination: Hashable, Identifiable {
     }
 }
 
+protocol MainCoordinator: AnyObject {
+    func showCountrySearch()
+    func showCountryDetail(_ country: Country)
+}
+
+protocol SearchCountryCoordinator: AnyObject {
+    func dismissSheet()
+}
+
+protocol CountryDetailCoordinator: AnyObject {
+    func navigateBack()
+}
+
 /// Coordinator responsible for app navigation
-final class AppCoordinator: ObservableObject {
+final class AppCoordinator: ObservableObject, MainCoordinator, SearchCountryCoordinator, CountryDetailCoordinator {
     // MARK: - Properties
     
     private let factory = ViewModelFactory()
@@ -78,6 +91,14 @@ final class AppCoordinator: ObservableObject {
         case .countryDetail(let country):
             CountryDetailView(country: country, coordinator: self)
         }
+    }
+    
+    func showCountrySearch() {
+        presentSheet(.countrySearch)
+    }
+    
+    func showCountryDetail(_ country: Country) {
+        navigateTo(.countryDetail(country))
     }
 }
 

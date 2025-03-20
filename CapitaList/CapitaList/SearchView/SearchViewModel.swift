@@ -11,7 +11,7 @@ import Combine
 @Observable
 final class SearchViewModel {
     private let countryRepository: CountryListsProviderProtocol
-    let coordinator: AppCoordinator
+    private let coordinator: SearchCountryCoordinator
     
     // States
     @MainActor
@@ -31,7 +31,7 @@ final class SearchViewModel {
     var onCountrySelected: ((Country) -> Void)?
     var currentlySelectedCountries: [Country] = []
     
-    init(countryRepository: CountryListsProviderProtocol, coordinator: AppCoordinator) {
+    init(countryRepository: CountryListsProviderProtocol, coordinator: SearchCountryCoordinator) {
         self.countryRepository = countryRepository
         self.coordinator = coordinator
     }
@@ -114,5 +114,9 @@ final class SearchViewModel {
         case .failure:
             currentlySelectedCountries = []
         }
+    }
+    
+    func dismiss() {
+        coordinator.dismissSheet()
     }
 }

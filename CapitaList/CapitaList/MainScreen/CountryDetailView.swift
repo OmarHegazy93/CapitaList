@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CountryDetailView: View {
     let country: Country
-    let coordinator: AppCoordinator
+    let coordinator: CountryDetailCoordinator
     
     var body: some View {
         ScrollView {

@@ -20,7 +20,7 @@ enum ViewState<T>: Equatable where T: Equatable {
 final class MainViewModel {
     private let countryRepository: CountryRepositoryProtocol
     private let locationService: LocationServiceProtocol
-    let coordinator: AppCoordinator
+    private let coordinator: MainCoordinator
     @MainActor
     var savedCountriesState: ViewState<[Country]> = .idle
     @MainActor
@@ -29,7 +29,7 @@ final class MainViewModel {
     init(
         countryRepository: CountryRepositoryProtocol,
         locationService: LocationServiceProtocol,
-        coordinator: AppCoordinator
+        coordinator: MainCoordinator
     ) {
         self.countryRepository = countryRepository
         self.locationService = locationService
@@ -146,5 +146,13 @@ final class MainViewModel {
         case .failure:
             await MainActor.run { savedCountriesState = .error("Failed to remove country") }
         }
+    }
+    
+    func showSearchScreen() {
+        coordinator.showCountrySearch()
+    }
+
+    func showCountryDetails(country: Country) {
+        coordinator.showCountryDetail(country)
     }
 }

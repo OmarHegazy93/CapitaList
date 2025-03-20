@@ -32,7 +32,7 @@ struct CountrySearchView: View {
                 .toolbar {
                     ToolbarItem(placement: .cancellationAction) {
                         Button("Cancel") {
-                            viewModel.coordinator.dismissSheet()
+                            viewModel.dismiss()
                         }
                     }
                 }
@@ -88,7 +88,7 @@ struct CountrySearchView: View {
                     .onTapGesture {
                         if viewModel.isSelectionValid(for: country) {
                             viewModel.onCountrySelected?(country)
-                            viewModel.coordinator.dismissSheet()
+                            viewModel.dismiss()
                         }
                     }
                     .listRowBackground(
