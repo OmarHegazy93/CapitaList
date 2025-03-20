@@ -30,18 +30,14 @@ enum AppDestination: Hashable, Identifiable {
 final class AppCoordinator: ObservableObject {
     // MARK: - Properties
     
-    // Dependency container
-    private let dependencies: DependencyContainer
+    private let factory = ViewModelFactory()
+    private lazy var mainViewModel: MainViewModel = {
+        factory.makeMainViewModel(coordinator: self)
+    }()
     
     // Navigation state
     @Published var path = NavigationPath()
     @Published var presentedSheet: AppDestination?
-    
-    // MARK: - Initialization
-    
-    init(dependencies: DependencyContainer) {
-        self.dependencies = dependencies
-    }
     
     // MARK: - Navigation Methods
     
@@ -73,17 +69,20 @@ final class AppCoordinator: ObservableObject {
     func view(for destination: AppDestination) -> some View {
         switch destination {
         case .main:
-            MainView(viewModel: dependencies.mainViewModel)
+            MainView(viewModel: mainViewModel)
         case .countrySearch:
-            CountrySearchView(viewModel: dependencies.mainViewModel)
+            let vm = factory.makeCountrySearchViewModel(coordinator: self)
+            CountrySearchView(viewModel: vm) {[weak self] selectedCountry in
+                Task { await self?.mainViewModel.saveCountry(selectedCountry) }
+            }
         case .countryDetail(let country):
             CountryDetailView(country: country, coordinator: self)
         }
     }
-} 
+}
 
 struct CoordinatorView: View {
-    @StateObject var coordinator = AppCoordinator(dependencies: DependencyContainer())
+    @StateObject var coordinator = AppCoordinator()
     
     var body: some View {
         NavigationStack(path: $coordinator.path) {
@@ -95,6 +94,5 @@ struct CoordinatorView: View {
         .sheet(item: $coordinator.presentedSheet) { destination in
             coordinator.view(for: destination)
         }
-        .environmentObject(coordinator)
     }
 }

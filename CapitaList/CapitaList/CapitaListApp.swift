@@ -8,16 +8,6 @@
 import SwiftUI
 
 struct CapitaListApp: App {
-    // Initialize dependency container
-    private let dependencies = DependencyContainer()
-    
-    // Initialize coordinator with dependencies
-    @State private var coordinator: AppCoordinator
-    
-    init() {
-        self.coordinator = AppCoordinator(dependencies: dependencies)
-    }
-    
     var body: some Scene {
         WindowGroup {
             CoordinatorView()
