@@ -9,7 +9,6 @@ import SwiftUI
 
 struct MainView: View {
     @State private var viewModel: MainViewModel
-    @EnvironmentObject var coordinator: AppCoordinator
     @State private var errorMessage: String?
     @State private var isShowingError = false
     
@@ -27,12 +26,12 @@ struct MainView: View {
                 .toolbar {
                     ToolbarItem(placement: .topBarTrailing) {
                         Button(action: {
-                            coordinator.presentSheet(.countrySearch)
+                            viewModel.coordinator.presentSheet(.countrySearch)
                         }) {
                             Image(systemName: "plus")
                                 .fontWeight(.semibold)
                         }
-                        .disabled(isMaxCountriesReached)
+                        .disabled(shouldHideAddButton)
                     }
                 }
                 .alert("Error", isPresented: $isShowingError) {
@@ -60,13 +59,12 @@ struct MainView: View {
                 
             case .loaded(let countries):
                 if countries.isEmpty {
-                    // Empty state handled by ZStack
                     Color.clear
                 } else {
                     List {
                         ForEach(countries) { country in
                             Button {
-                                coordinator.navigateTo(.countryDetail(country))
+                                viewModel.coordinator.navigateTo(.countryDetail(country))
                             } label: {
                                 CountryRowView(country: country)
                             }
@@ -120,9 +118,9 @@ struct MainView: View {
         return false
     }
     
-    private var isMaxCountriesReached: Bool {
-        if case .loaded(let countries) = viewModel.savedCountriesState, countries.count >= 5 {
-            return true
+    private var shouldHideAddButton: Bool {
+        if case .loaded(let countries) = viewModel.savedCountriesState {
+            return countries.count >= 5 || countries.isEmpty
         }
         return false
     }

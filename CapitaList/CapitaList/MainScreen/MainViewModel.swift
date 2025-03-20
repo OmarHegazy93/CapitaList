@@ -20,7 +20,7 @@ enum ViewState<T>: Equatable where T: Equatable {
 final class MainViewModel {
     private let countryRepository: CountryRepositoryProtocol
     private let locationService: LocationServiceProtocol
-    
+    let coordinator: AppCoordinator
     @MainActor
     var savedCountriesState: ViewState<[Country]> = .idle
     @MainActor
@@ -28,10 +28,12 @@ final class MainViewModel {
     
     init(
         countryRepository: CountryRepositoryProtocol,
-        locationService: LocationServiceProtocol
+        locationService: LocationServiceProtocol,
+        coordinator: AppCoordinator
     ) {
         self.countryRepository = countryRepository
         self.locationService = locationService
+        self.coordinator = coordinator
     }
     
     func loadInitialData() async {
@@ -129,8 +131,8 @@ final class MainViewModel {
                 return true
             }
             return false
-        case .failure:
-            await MainActor.run { savedCountriesState = .error("Failed to save country") }
+        case .failure(let error):
+            await MainActor.run { savedCountriesState = .error(error.localizedDescription) }
             return false
         }
     }
