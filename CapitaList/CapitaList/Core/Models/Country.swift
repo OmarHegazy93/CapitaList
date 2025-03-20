@@ -8,9 +8,9 @@
 struct Country: Codable, Equatable, Identifiable {
     let name: String
     let code: String
-    let capital: String
-    private let latlngArray: [Double]
-    private let currenciesArray: [Currency]
+    let capital: String?
+    private let latlngArray: [Double]?
+    private let currenciesArray: [Currency]?
     
     init(
         name: String,
@@ -28,7 +28,7 @@ struct Country: Codable, Equatable, Identifiable {
     
     enum CodingKeys: String, CodingKey {
         case name
-        case code = "alpha3Code"
+        case code = "alpha2Code"
         case capital
         case latlngArray = "latlng"
         case currenciesArray = "currencies"
@@ -37,12 +37,12 @@ struct Country: Codable, Equatable, Identifiable {
     var id: String { code }
     
     var location: Location? {
-        guard latlngArray.count == 2 else { return nil }
+        guard let latlngArray, latlngArray.count == 2 else { return nil }
         return Location(latitude: latlngArray[0], longitude: latlngArray[1])
     }
     
     var currencyString: String {
-        guard let currency = currenciesArray.first else { return "" }
+        guard let currency = currenciesArray?.first else { return "" }
         return "\(currency.code) \(currency.name) \(currency.symbol)"
     }
 }
