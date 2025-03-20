@@ -8,19 +8,19 @@
 import SwiftUI
 
 struct CapitaListApp: App {
-    private let locationService = CoreLocationService()
-    private let countryRepository = CountryRepository(
-        networkService: CountriesNetworkService(),
-        storageService: CountriesStorageService(),
-        geocodingService: GeocodingService()
-    )
+    // Initialize dependency container
+    private let dependencies = DependencyContainer()
+    
+    // Initialize coordinator with dependencies
+    @State private var coordinator: AppCoordinator
+    
+    init() {
+        self.coordinator = AppCoordinator(dependencies: dependencies)
+    }
     
     var body: some Scene {
         WindowGroup {
-            MainView(viewModel: MainViewModel(
-                countryRepository: countryRepository,
-                locationService: locationService
-            ))
+            CoordinatorView()
         }
     }
 }
