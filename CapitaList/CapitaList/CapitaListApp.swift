@@ -7,11 +7,33 @@
 
 import SwiftUI
 
-@main
 struct CapitaListApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            CoordinatorView()
+        }
+    }
+}
+
+@main
+struct MainEntryPoint {
+    static func main() {
+        guard isProduction() else {
+            TestApp.main()
+            return
+        }
+ 
+        CapitaListApp.main()
+    }
+ 
+    private static func isProduction() -> Bool {
+        return NSClassFromString("XCTestCase") == nil
+    }
+}
+
+struct TestApp: App {
+    var body: some Scene {
+        WindowGroup {
         }
     }
 }

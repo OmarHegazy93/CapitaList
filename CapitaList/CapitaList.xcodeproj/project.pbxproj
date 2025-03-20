@@ -14,19 +14,11 @@
 			remoteGlobalIDString = 8A5464E72D8A326600B43CB8;
 			remoteInfo = CapitaList;
 		};
-		8A5465062D8A326700B43CB8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8A5464E02D8A326600B43CB8 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8A5464E72D8A326600B43CB8;
-			remoteInfo = CapitaList;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		8A5464E82D8A326600B43CB8 /* CapitaList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CapitaList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A5464FB2D8A326700B43CB8 /* CapitaListTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CapitaListTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8A5465052D8A326700B43CB8 /* CapitaListUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CapitaListUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -57,13 +49,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8A5465022D8A326700B43CB8 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -81,7 +66,6 @@
 			children = (
 				8A5464E82D8A326600B43CB8 /* CapitaList.app */,
 				8A5464FB2D8A326700B43CB8 /* CapitaListTests.xctest */,
-				8A5465052D8A326700B43CB8 /* CapitaListUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -134,26 +118,6 @@
 			productReference = 8A5464FB2D8A326700B43CB8 /* CapitaListTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		8A5465042D8A326700B43CB8 /* CapitaListUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8A5465152D8A326700B43CB8 /* Build configuration list for PBXNativeTarget "CapitaListUITests" */;
-			buildPhases = (
-				8A5465012D8A326700B43CB8 /* Sources */,
-				8A5465022D8A326700B43CB8 /* Frameworks */,
-				8A5465032D8A326700B43CB8 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				8A5465072D8A326700B43CB8 /* PBXTargetDependency */,
-			);
-			name = CapitaListUITests;
-			packageProductDependencies = (
-			);
-			productName = CapitaListUITests;
-			productReference = 8A5465052D8A326700B43CB8 /* CapitaListUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -168,10 +132,6 @@
 						CreatedOnToolsVersion = 16.2;
 					};
 					8A5464FA2D8A326700B43CB8 = {
-						CreatedOnToolsVersion = 16.2;
-						TestTargetID = 8A5464E72D8A326600B43CB8;
-					};
-					8A5465042D8A326700B43CB8 = {
 						CreatedOnToolsVersion = 16.2;
 						TestTargetID = 8A5464E72D8A326600B43CB8;
 					};
@@ -193,7 +153,6 @@
 			targets = (
 				8A5464E72D8A326600B43CB8 /* CapitaList */,
 				8A5464FA2D8A326700B43CB8 /* CapitaListTests */,
-				8A5465042D8A326700B43CB8 /* CapitaListUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -207,13 +166,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		8A5464F92D8A326700B43CB8 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8A5465032D8A326700B43CB8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -237,13 +189,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8A5465012D8A326700B43CB8 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -251,11 +196,6 @@
 			isa = PBXTargetDependency;
 			target = 8A5464E72D8A326600B43CB8 /* CapitaList */;
 			targetProxy = 8A5464FC2D8A326700B43CB8 /* PBXContainerItemProxy */;
-		};
-		8A5465072D8A326700B43CB8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8A5464E72D8A326600B43CB8 /* CapitaList */;
-			targetProxy = 8A5465062D8A326700B43CB8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -385,6 +325,8 @@
 				DEVELOPMENT_ASSET_PATHS = "\"CapitaList/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We need your location to show you information about your country";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location to show you information about your country";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -422,6 +364,8 @@
 				DEVELOPMENT_ASSET_PATHS = "\"CapitaList/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We need your location to show you information about your country";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location to show you information about your country";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -492,48 +436,6 @@
 			};
 			name = Release;
 		};
-		8A5465162D8A326700B43CB8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
-				MACOSX_DEPLOYMENT_TARGET = 15.2;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.omar.CapitaListUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
-				TEST_TARGET_NAME = CapitaList;
-				XROS_DEPLOYMENT_TARGET = 2.2;
-			};
-			name = Debug;
-		};
-		8A5465172D8A326700B43CB8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
-				MACOSX_DEPLOYMENT_TARGET = 15.2;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.omar.CapitaListUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
-				TEST_TARGET_NAME = CapitaList;
-				XROS_DEPLOYMENT_TARGET = 2.2;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -560,15 +462,6 @@
 			buildConfigurations = (
 				8A5465132D8A326700B43CB8 /* Debug */,
 				8A5465142D8A326700B43CB8 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		8A5465152D8A326700B43CB8 /* Build configuration list for PBXNativeTarget "CapitaListUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8A5465162D8A326700B43CB8 /* Debug */,
-				8A5465172D8A326700B43CB8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
