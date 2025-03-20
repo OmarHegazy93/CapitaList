@@ -7,6 +7,7 @@
 
 import Testing
 @testable import CapitaList
+import Foundation
 
 // TODO: To discuss the difference between this test suite and MainViewModelTestsWithMockedProviders
 struct MainViewModelTestsWithMockedRepository {
@@ -51,10 +52,12 @@ struct MainViewModelTestsWithMockedRepository {
     func initShouldLoadDefaultCountryWhenLocationPermissionDenied() async {
             // Given
         locationService.setHasPermission(to: false)
-            
+        let countryCode = Locale.current.identifier.components(separatedBy: "_").last ?? "US"
+        let countryName = Locale.current.localizedString(forRegionCode: countryCode)
+        
             let defaultCountry = Country(
-                name: "France",
-                code: "FR",
+                name: countryName ?? "Unknown",
+                code: countryCode,
                 capital: "Paris",
                 latlngArray: [46.0, 2.0],
                 currenciesArray: [Currency(code: "EUR", name: "Euro", symbol: "€")]

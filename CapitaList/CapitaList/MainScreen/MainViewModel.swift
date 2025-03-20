@@ -70,8 +70,8 @@ final class MainViewModel {
     }
     
     private func loadDefaultCountry() async {
-        // Using France as the default country
-        let result = await countryRepository.getCountryByCode(code: "FR")
+        let countryCode = Locale.current.identifier.components(separatedBy: "_").last ?? "unknown"
+        let result = await countryRepository.getCountryByCode(code: countryCode)
         
         switch result {
         case .success(let country):

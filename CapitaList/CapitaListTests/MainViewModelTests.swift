@@ -7,6 +7,7 @@
 
 import Testing
 @testable import CapitaList
+import Foundation
 
 struct MainViewModelTestsWithMockedProviders {
     let viewModel: MainViewModel
@@ -60,16 +61,19 @@ struct MainViewModelTestsWithMockedProviders {
         // Given
         locationService.setHasPermission(to: false)
             
+        let countryCode = Locale.current.identifier.components(separatedBy: "_").last ?? "US"
+        let countryName = Locale.current.localizedString(forRegionCode: countryCode)
+        
         let defaultCountry = Country(
-            name: "France",
-            code: "FR",
+            name: countryName ?? "Unknown",
+            code: countryCode,
             capital: "Paris",
             latlngArray: [46.0, 2.0],
             currenciesArray: [Currency(code: "EUR", name: "Euro", symbol: "€")]
         )
         
         let data = try Parser().encode([defaultCountry]).get()
-        storageProvider.set(data, forKey: "allCountries")
+        storageProvider.set(data, forKey: "savedCountries")
         
         // When
         await viewModel.loadInitialData()
