@@ -7,11 +7,43 @@
 
 import SwiftUI
 
-@main
 struct CapitaListApp: App {
+    private let locationService = CoreLocationService()
+    private let countryRepository = CountryRepository(
+        networkService: CountriesNetworkService(),
+        storageService: CountriesStorageService(),
+        geocodingService: GeocodingService()
+    )
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainView(viewModel: MainViewModel(
+                countryRepository: countryRepository,
+                locationService: locationService
+            ))
+        }
+    }
+}
+
+@main
+struct MainEntryPoint {
+    static func main() {
+        guard isProduction() else {
+            TestApp.main()
+            return
+        }
+ 
+        CapitaListApp.main()
+    }
+ 
+    private static func isProduction() -> Bool {
+        return NSClassFromString("XCTestCase") == nil
+    }
+}
+
+struct TestApp: App {
+    var body: some Scene {
+        WindowGroup {
         }
     }
 }
