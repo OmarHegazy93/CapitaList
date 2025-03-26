@@ -15,6 +15,7 @@ struct MainViewModelTestsWithMockedProviders {
     let storageProvider = MockStorageProvider()
     let geocodingService = MockGeocodingService()
     let locationService = MockLocationService()
+    let coordinator = AppCoordinator()
     
     init() {
         let countryRepository = CountryRepository(
@@ -25,7 +26,8 @@ struct MainViewModelTestsWithMockedProviders {
         
         viewModel = MainViewModel(
             countryRepository: countryRepository,
-            locationService: locationService
+            locationService: locationService,
+            coordinator: coordinator
         )
     }
     

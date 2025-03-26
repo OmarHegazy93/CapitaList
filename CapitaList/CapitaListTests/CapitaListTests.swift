@@ -14,11 +14,13 @@ struct MainViewModelTestsWithMockedRepository {
     let viewModel: MainViewModel
     let countryRepository = MockCountryRepository()
     let locationService = MockLocationService()
+    let coordinator = AppCoordinator()
     
     init() {
         viewModel = MainViewModel(
             countryRepository: countryRepository,
-            locationService: locationService
+            locationService: locationService,
+            coordinator: coordinator
         )
     }
     
